@@ -1,0 +1,97 @@
+<div *ngIf="isAddingRecord">
+    <app-new-record (close)="onCancel()" (entry)="onAddRecord($event)"></app-new-record>
+</div>
+
+<div class="head">
+    <h1>Employees</h1>
+    <button id='main' (click)="displayAll()"> Display All Employees </button>
+    <button id='main' (click)="findOne()"> Search Employee by EmpId </button>
+    <button id='main' (click)="onStartAddRec()"> Add Employee Record </button>
+    <button id='main' (click)="onStartDelRec()"> Delete Employee Record </button>
+    <br>
+</div>
+
+<div class="row" id="allrow">
+    <div class="column" id="all" *ngIf="displayall">
+        <div *ngIf="status == 1">
+            <table>
+                <tr>
+                    <th> Id </th>
+                    <th> Name </th>
+                </tr>
+                <tr *ngFor="let emp of emplist">
+                    <td> {{ emp.empId }} </td>
+                    <td> {{ emp.empName | uppercase }} </td>
+                </tr>
+            </table>
+            <!-- <ul> -->
+                <!-- <li *ngFor="let emp of emplist"> -->
+
+                    <!-- Id: {{ emp.empId }} -->
+                    <!-- Name: {{ emp.empName | uppercase }} <br><br> -->
+                    <!-- {{ emp | json}}<br><br> -->
+                <!-- </li>  -->
+                <!-- lowercase, orderby, currency, date, filter: 'i', json, limitto: 3, number (written as str, formatted as number) -->
+            <!-- </ul> -->
+            <button (click)="displayClose()"> Close </button>
+        </div>
+    
+        <div *ngIf="status != 1">
+            {{ submitStatus }}
+        </div>
+    </div>
+<!-- </div> -->
+
+<!-- <div class="row" id="allrow"> -->
+    <div class="column" id="all" *ngIf="loginfail">
+        {{ submitStatus }} <br><br>
+        <button (click)="closeLoginStatus()"> Close </button>
+    </div>
+<!-- </div> -->
+
+<!-- <div class="row" id="allrow">     -->
+    <div id='sub' class="column" id="one" *ngIf="findone">
+        <form (ngSubmit)="onSubmit()">
+            <br>
+            Emp Id to find:
+            <input type="text" id="id" name="id" [(ngModel)]="id" autocomplete="off" />
+            <br><br>
+            <button type="submit">Search</button><button (click)="findClose()"> Close </button>
+        </form><br>
+    </div>
+    
+    <div id='sub' class="column" id="one" *ngIf="displayone">
+        <div *ngIf="status == 1">
+            Record found:
+            <ul>
+                <li>Id: {{emp?.empId}}<br> Name: {{emp?.empName}}</li>
+            </ul>
+        </div>
+        <div *ngIf="status != 1">
+            {{ submitStatus }}
+        </div>
+    </div>
+<!-- </div> -->
+
+<!-- <div class="row" id="allrow">     -->
+    <div id='sub' class="column" id="one" *ngIf="deleteone">
+        <form (ngSubmit)="deleteRec()">
+            <br>
+            Emp Id to delete:
+            <input type="text" id="id" name="id" [(ngModel)]="id" autocomplete="off" />
+            <br><br>
+            <button type="submit">Delete</button><button (click)="closeDelete()"> Close </button>
+        </form><br>
+    </div>
+    
+    <div id='sub' class="column" id="one" *ngIf="displaydelete">
+        {{ submitStatus }}
+    </div>
+</div>
+
+<div *ngIf="afterSubmit" class="row" id="allrow">
+    <div class="column" id="one">
+        <p> {{ submitStatus }} </p>
+        <button (click)="closeStatus()"> Close </button>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+.head {
+    border: 1px solid whitesmoke;
+    border-radius: 6px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 auto 2rem auto;
+    text-align: center;
+}
+#main {
+    width: 200px;
+}
+
+#one {
+    width: 30%;
+    padding: 10px;
+    border: 1px solid whitesmoke;
+    border-radius: 6px;
+}
+
+#allrow {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 auto 2rem auto;
+    text-align: center;
+}
+
+#all {
+    border: 1px solid whitesmoke;
+    border-radius: 6px;
+    overflow: hidden;
+    align-items: center;
+    text-align: left;
+    width: 20%;
+    padding: 10px;
+}
+
+.row:after {
+    content: "";
+    display: flex;
+    clear: both;
+}
+
+ul {
+    text-align: left;
+}
+
+td, th {
+    padding: 1rem;
+}
